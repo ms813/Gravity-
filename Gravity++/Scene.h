@@ -10,6 +10,7 @@ public:
 	~Scene();
 	int draw(sf::RenderWindow *window);
 	int update(float dt);
+	int handleInput(sf::RenderWindow *window);
 private:
 	std::vector<Entity> entities;
 };

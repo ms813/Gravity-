@@ -24,18 +24,9 @@ int Game::run()
 		sf::Time elapsed = clock.restart();
 		float dt = elapsed.asSeconds();
 
-		sf::Event event;
-
-		while (window.pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed)
-			{
-				window.close();
-			}
-		}
+		scene.handleInput(&window);
 
 		scene.update(dt);
-
 
 		window.clear();
 		scene.draw(&window);
