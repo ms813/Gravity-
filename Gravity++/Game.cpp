@@ -1,6 +1,5 @@
 #include "Game.h"
 
-
 Game::Game(){}
 
 Game::~Game(){}
@@ -10,14 +9,12 @@ int Game::run()
 {
 
 	sf::RenderWindow window(sf::VideoMode(200, 200), "Gravity++");
+	window.setFramerateLimit(60);
 	sf::CircleShape shape(100.0f);
 
 	sf::Clock clock;
-	
 
 	Scene scene;
-
-	std::vector<int> gameStates;
 
 	while (window.isOpen())
 	{
@@ -26,7 +23,7 @@ int Game::run()
 
 		scene.handleInput(&window);
 
-		scene.update(dt);
+		scene.update(dt, true);
 
 		window.clear();
 		scene.draw(&window);

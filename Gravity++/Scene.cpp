@@ -2,7 +2,9 @@
 
 Scene::Scene()
 {
-	entities.push_back(Entity());
+	Entity* entity = new Entity();		
+	entity->addComponent(new PhysicsController());
+	entities.push_back(entity);	
 }
 
 
@@ -11,22 +13,26 @@ Scene::~Scene()
 }
 
 
-int Scene::draw(sf::RenderWindow *window)
-{	
+bool Scene::draw(sf::RenderWindow *window)
+{		
 	for (auto &entity : entities)
 	{
-		entity.draw(window);
+		entity->draw(window);
 	}
-	return 0;
+
+	return true;
 }
 
 
-int Scene::update(float dt)
+bool Scene::update(const float dt, const bool VERLET_STATE)
 {
-	return 0;
+	for (auto &entity : entities){
+		entity->update(dt, VERLET_STATE);
+	}
+	return true;
 }
 
-int Scene::handleInput(sf::RenderWindow *window)
+bool Scene::handleInput(sf::RenderWindow *window)
 {
 	sf::Event event;
 	while (window->pollEvent(event))
@@ -37,5 +43,5 @@ int Scene::handleInput(sf::RenderWindow *window)
 		}
 	}
 
-	return 0;
+	return true;
 }
