@@ -2,7 +2,9 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <memory>
+
 #include "Entity.h"
+#include "EntityFactory.h"
 #include "PhysicsController.h"
 
 class Scene
@@ -15,7 +17,7 @@ public:
 	bool handleInput(sf::RenderWindow &window);
 
 private:
-	std::vector<Entity*> entities;
+	std::vector<std::shared_ptr<Entity>> entities;
 	bool VERLET_STATE;
 };
 

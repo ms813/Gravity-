@@ -8,7 +8,7 @@ Entity::Entity()
 
 
 Entity::~Entity()
-{
+{	
 }
 
 bool Entity::init()
@@ -44,19 +44,18 @@ bool Entity::update(const float dt, const bool VERLET_STATE)
 }
 
 
-bool Entity::addComponent(Component* component)
+bool Entity::addComponent(std::shared_ptr<Component> component)
 {	
 	bool found = std::find(components.begin(), components.end(), component) != components.end();
 	
 	if (!found)
 	{
-		components.push_back(component);		
-		std::cout << "[Entity.addComponent()] Component added " << component << std::endl;
+		components.push_back(component);				
 
 		//cache the physics controller
-		if (dynamic_cast<PhysicsController*>(component) != NULL)
+		if (dynamic_cast<PhysicsController*>(component.get()) != NULL)
 		{
-			physicsController = dynamic_cast<PhysicsController*>(component);
+			physicsController = dynamic_cast<PhysicsController*>(component.get());
 			std::cout << "Cached the physics controller" << std::endl;
 		}
 	}

@@ -3,9 +3,18 @@
 Scene::Scene():
 VERLET_STATE(true)
 {
+	/*
 	Entity* entity = new Entity();		
-	entity->addComponent(new PhysicsController());
+	PhysicsController* physControl = new PhysicsController();	
+
+	entity->addComponent(physControl);
 	entities.push_back(entity);	
+	entity->init();	
+	*/
+
+	EntityFactory factory;
+	std::shared_ptr<Entity> asteroid = factory.createEntity("asteroid");
+	entities.push_back(asteroid);
 }
 
 
@@ -31,7 +40,7 @@ bool Scene::update(const float dt)
 		entity->update(dt, VERLET_STATE);
 	}
 
-	VERLET_STATE != VERLET_STATE;
+	VERLET_STATE = !VERLET_STATE;
 	return true;
 }
 

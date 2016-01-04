@@ -12,6 +12,18 @@ PhysicsController::~PhysicsController()
 {
 }
 
+bool PhysicsController::init(const PhysicsControllerInitialiser parameters)
+{	
+	mass = parameters.mass;
+	density = parameters.density;
+	position = parameters.position;
+	velocity = parameters.velocity;
+
+	std::cout << mass << std::endl;
+
+	return true;
+}
+
 bool PhysicsController::draw(sf::RenderWindow &window)
 {
 	return true;

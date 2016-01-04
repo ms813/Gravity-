@@ -1,4 +1,5 @@
 #include "Game.h"
+#include <Windows.h>
 
 Game::Game(){}
 
@@ -7,10 +8,12 @@ Game::~Game(){}
 // starts the game loop running
 int Game::run()
 {
+	//get the size of the primary monitor
+	int screenWidth = GetSystemMetrics(SM_CXSCREEN);
+	int screenHeight = GetSystemMetrics(SM_CYSCREEN);
 
-	sf::RenderWindow window(sf::VideoMode(200, 200), "Gravity++");
+	sf::RenderWindow window(sf::VideoMode(screenWidth / 2, screenHeight / 2), "Gravity++");
 	window.setFramerateLimit(60);
-	sf::CircleShape shape(100.0f);
 
 	sf::Clock clock;
 

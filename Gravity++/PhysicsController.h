@@ -1,8 +1,10 @@
 #pragma once
 #include "Component.h"
 #include "VectorMath.h"
+#include "PhysicsControllerInitialiser.h"
 #include <queue>
 #include <iostream>
+#include <memory>
 
 class PhysicsController : public Component
 {
@@ -11,7 +13,8 @@ public:
 	~PhysicsController();
 
 	bool update(const float dt, const bool VERLET_STATE) override;
-	bool draw(sf::RenderWindow &window) override;		
+	bool draw(sf::RenderWindow &window) override;
+	bool init(const PhysicsControllerInitialiser parameters);
 	
 	void applyForce(sf::Vector2f force);
 
