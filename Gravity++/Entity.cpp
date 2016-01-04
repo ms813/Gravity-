@@ -53,9 +53,9 @@ bool Entity::addComponent(std::shared_ptr<Component> component)
 		components.push_back(component);				
 
 		//cache the physics controller
-		if (dynamic_cast<PhysicsController*>(component.get()) != NULL)
+		if (dynamic_cast<PhysicsComponent*>(component.get()) != NULL)
 		{
-			physicsController = dynamic_cast<PhysicsController*>(component.get());
+			physicsController = dynamic_cast<PhysicsComponent*>(component.get());
 			std::cout << "Cached the physics controller" << std::endl;
 		}
 	}

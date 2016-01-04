@@ -5,18 +5,18 @@
 #include <iostream>
 #include <memory>
 
-class PhysicsController : public Component
+class PhysicsComponent : public Component
 {
 
 public:
-	PhysicsController(
+	PhysicsComponent(
 		std::shared_ptr<Entity> owner,
 		sf::Vector2f position,
 		sf::Vector2f velocity,
 		float mass,
 		float density
 		);
-	~PhysicsController();
+	~PhysicsComponent();
 
 	bool update(const float dt, const bool VERLET_STATE) override;
 	bool draw(sf::RenderWindow &window) override;

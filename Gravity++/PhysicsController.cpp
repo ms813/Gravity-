@@ -1,6 +1,6 @@
-#include "PhysicsController.h"
+#include "PhysicsComponent.h"
 
-PhysicsController::PhysicsController(std::shared_ptr<Entity> owner, sf::Vector2f position, sf::Vector2f velocity, float mass, float density) :
+PhysicsComponent::PhysicsComponent(std::shared_ptr<Entity> owner, sf::Vector2f position, sf::Vector2f velocity, float mass, float density) :
 Component(owner),
 position(position),
 velocity(velocity),
@@ -11,16 +11,16 @@ appliedForce(0,0)
 }
 
 
-PhysicsController::~PhysicsController()
+PhysicsComponent::~PhysicsComponent()
 {
 }
 
-bool PhysicsController::draw(sf::RenderWindow &window)
+bool PhysicsComponent::draw(sf::RenderWindow &window)
 {
 	return true;
 }
 
-bool PhysicsController::update(const float dt, const bool VERLET_STATE)
+bool PhysicsComponent::update(const float dt, const bool VERLET_STATE)
 {	
 	//Verlet method requires updating position and velocity in separate steps
 	//see http://gamedev.stackexchange.com/questions/15708/how-can-i-implement-gravity
@@ -39,7 +39,7 @@ bool PhysicsController::update(const float dt, const bool VERLET_STATE)
 	return true;
 }
 
-sf::Vector2f PhysicsController::calculatePositionChange(const float dt)
+sf::Vector2f PhysicsComponent::calculatePositionChange(const float dt)
 {
 	acceleration = calculateAcceleration();
 
@@ -49,7 +49,7 @@ sf::Vector2f PhysicsController::calculatePositionChange(const float dt)
 	return change;
 }
 
-sf::Vector2f PhysicsController::calculateVelocityChange(const float dt)
+sf::Vector2f PhysicsComponent::calculateVelocityChange(const float dt)
 {
 	sf::Vector2f newAcceleration = calculateAcceleration();
 
@@ -57,7 +57,7 @@ sf::Vector2f PhysicsController::calculateVelocityChange(const float dt)
 	return dt * (acceleration + newAcceleration) / 2.0f;
 }
 
-sf::Vector2f PhysicsController::calculateAcceleration()
+sf::Vector2f PhysicsComponent::calculateAcceleration()
 {
 	sf::Vector2f dir = VectorMath::normalize(appliedForce);	
 
@@ -67,17 +67,17 @@ sf::Vector2f PhysicsController::calculateAcceleration()
 	return dir * (F / mass);
 }
 
-void PhysicsController::applyForce(sf::Vector2f force)
+void PhysicsComponent::applyForce(sf::Vector2f force)
 {
 	appliedForce += force;
 }
 
-sf::Vector2f PhysicsController::getPositionChange()
+sf::Vector2f PhysicsComponent::getPositionChange()
 {		
 	return positionChange;
 }
 
-sf::Vector2f PhysicsController::getPosition()
+sf::Vector2f PhysicsComponent::getPosition()
 {
 	return position;
 }

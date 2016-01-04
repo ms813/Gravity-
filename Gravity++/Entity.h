@@ -6,7 +6,7 @@
 #include <memory>
 
 #include "Component.h"
-#include "PhysicsController.h"
+#include "PhysicsComponent.h"
 
 class Entity
 {
@@ -22,5 +22,5 @@ private:
 	sf::CircleShape shape;
 	std::vector<std::shared_ptr<Component>> components;
 
-	PhysicsController* physicsController;
+	PhysicsComponent* physicsController;
 };

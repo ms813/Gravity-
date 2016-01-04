@@ -22,7 +22,7 @@ std::shared_ptr<Entity> EntityFactory::createEntity(std::string entityType)
 		sf::Vector2f pos(200, 200);
 		sf::Vector2f vel(50, 0);
 
-		auto physControl = std::make_shared<PhysicsController>(entity, pos, vel, mass, density);		
+		auto physControl = std::make_shared<PhysicsComponent>(entity, pos, vel, mass, density);
 		Event evt;
 		emitEvent(evt);
 
