@@ -1,6 +1,7 @@
 #include "Scene.h"
 
-Scene::Scene()
+Scene::Scene():
+VERLET_STATE(true)
 {
 	Entity* entity = new Entity();		
 	entity->addComponent(new PhysicsController());
@@ -24,11 +25,13 @@ bool Scene::draw(sf::RenderWindow *window)
 }
 
 
-bool Scene::update(const float dt, const bool VERLET_STATE)
+bool Scene::update(const float dt)
 {
 	for (auto &entity : entities){
 		entity->update(dt, VERLET_STATE);
 	}
+
+	VERLET_STATE != VERLET_STATE;
 	return true;
 }
 

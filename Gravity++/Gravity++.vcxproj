@@ -88,6 +88,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PhysicsController.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="VectorMath.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Component.h" />
@@ -95,6 +96,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="PhysicsController.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="VectorMath.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -11,10 +11,11 @@ public:
 	Scene();
 	virtual ~Scene();
 	bool draw(sf::RenderWindow *window);
-	bool update(const float dt, const bool VERLET_STATE);
+	bool update(const float dt);
 	bool handleInput(sf::RenderWindow *window);
 
 private:
 	std::vector<Entity*> entities;
+	bool VERLET_STATE;
 };
 

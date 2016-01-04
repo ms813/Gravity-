@@ -11,6 +11,12 @@ Entity::~Entity()
 {
 }
 
+bool Entity::init()
+{
+	shape.setPosition(physicsController->getPosition());
+	return true;
+}
+
 
 bool Entity::draw(sf::RenderWindow *window)
 {
@@ -25,7 +31,10 @@ bool Entity::draw(sf::RenderWindow *window)
 }
 
 bool Entity::update(const float dt, const bool VERLET_STATE)
-{	
+{		
+	sf::Vector2f offset = physicsController->getPositionChange();	
+	shape.move(offset);
+
 	for (auto &component : components)
 	{
 		component->update(dt, VERLET_STATE);
@@ -41,8 +50,15 @@ bool Entity::addComponent(Component* component)
 	
 	if (!found)
 	{
-		components.push_back(component);
+		components.push_back(component);		
 		std::cout << "[Entity.addComponent()] Component added " << component << std::endl;
+
+		//cache the physics controller
+		if (dynamic_cast<PhysicsController*>(component) != NULL)
+		{
+			physicsController = dynamic_cast<PhysicsController*>(component);
+			std::cout << "Cached the physics controller" << std::endl;
+		}
 	}
 	else
 	{

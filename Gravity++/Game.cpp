@@ -23,7 +23,7 @@ int Game::run()
 
 		scene.handleInput(&window);
 
-		scene.update(dt, true);
+		scene.update(dt);
 
 		window.clear();
 		scene.draw(&window);
