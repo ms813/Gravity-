@@ -10,9 +10,9 @@ class Scene
 public:
 	Scene();
 	virtual ~Scene();
-	bool draw(sf::RenderWindow *window);
+	bool draw(sf::RenderWindow &window);
 	bool update(const float dt);
-	bool handleInput(sf::RenderWindow *window);
+	bool handleInput(sf::RenderWindow &window);
 
 private:
 	std::vector<Entity*> entities;

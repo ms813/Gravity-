@@ -12,7 +12,7 @@ PhysicsController::~PhysicsController()
 {
 }
 
-bool PhysicsController::draw(sf::RenderWindow *window)
+bool PhysicsController::draw(sf::RenderWindow &window)
 {
 	return true;
 }

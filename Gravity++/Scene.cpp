@@ -14,7 +14,7 @@ Scene::~Scene()
 }
 
 
-bool Scene::draw(sf::RenderWindow *window)
+bool Scene::draw(sf::RenderWindow &window)
 {		
 	for (auto &entity : entities)
 	{
@@ -35,14 +35,14 @@ bool Scene::update(const float dt)
 	return true;
 }
 
-bool Scene::handleInput(sf::RenderWindow *window)
+bool Scene::handleInput(sf::RenderWindow &window)
 {
 	sf::Event event;
-	while (window->pollEvent(event))
+	while (window.pollEvent(event))
 	{
 		if (event.type == sf::Event::Closed)
 		{
-			window->close();
+			window.close();
 		}
 	}
 

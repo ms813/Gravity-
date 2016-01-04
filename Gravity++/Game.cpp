@@ -21,12 +21,12 @@ int Game::run()
 		sf::Time elapsed = clock.restart();
 		float dt = elapsed.asSeconds();
 
-		scene.handleInput(&window);
+		scene.handleInput(window);
 
 		scene.update(dt);
 
 		window.clear();
-		scene.draw(&window);
+		scene.draw(window);
 		window.display();
 	}
 	return 0;

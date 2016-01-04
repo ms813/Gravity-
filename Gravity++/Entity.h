@@ -12,7 +12,7 @@ class Entity
 public:
 	Entity();
 	virtual ~Entity();
-	bool draw(sf::RenderWindow *window);
+	bool draw(sf::RenderWindow &window);
 	bool update(const float dt, const bool VERLET_STATE);
 	bool init();
 	bool addComponent(Component *component);	

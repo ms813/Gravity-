@@ -18,9 +18,9 @@ bool Entity::init()
 }
 
 
-bool Entity::draw(sf::RenderWindow *window)
+bool Entity::draw(sf::RenderWindow &window)
 {
-	window->draw(shape);
+	window.draw(shape);
 
 	for (auto &component : components)
 	{
