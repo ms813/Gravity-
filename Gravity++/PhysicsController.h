@@ -9,7 +9,13 @@ class PhysicsController : public Component
 {
 
 public:
-	PhysicsController(sf::Vector2f position, sf::Vector2f velocity, float mass, float density);
+	PhysicsController(
+		std::shared_ptr<Entity> owner,
+		sf::Vector2f position,
+		sf::Vector2f velocity,
+		float mass,
+		float density
+		);
 	~PhysicsController();
 
 	bool update(const float dt, const bool VERLET_STATE) override;

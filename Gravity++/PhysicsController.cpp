@@ -1,6 +1,7 @@
 #include "PhysicsController.h"
 
-PhysicsController::PhysicsController(sf::Vector2f position, sf::Vector2f velocity, float mass, float density):
+PhysicsController::PhysicsController(std::shared_ptr<Entity> owner, sf::Vector2f position, sf::Vector2f velocity, float mass, float density) :
+Component(owner),
 position(position),
 velocity(velocity),
 mass(mass),
