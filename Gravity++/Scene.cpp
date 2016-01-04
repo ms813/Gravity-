@@ -11,6 +11,7 @@ VERLET_STATE(true)
 	entities.push_back(entity);	
 	entity->init();	
 	*/
+	loadLevelJSON("resources/leveldata/level1.json");
 
 	EntityFactory factory;
 	std::shared_ptr<Entity> asteroid = factory.createEntity("asteroid");
@@ -57,3 +58,23 @@ bool Scene::handleInput(sf::RenderWindow &window)
 
 	return true;
 }
+
+
+bool Scene::loadLevelJSON(const std::string path)
+{
+	using namespace rapidjson;
+	using namespace std;
+
+	ifstream inputStream(path);
+	string fileContents((istreambuf_iterator<char>(inputStream)),
+		istreambuf_iterator<char>());
+
+	const char* chars = fileContents.c_str();
+	StringStream s(chars);
+	
+	levelData.ParseStream(s);
+	
+	cout << levelData["bobby"].GetString() << endl;
+	return true;
+}
+

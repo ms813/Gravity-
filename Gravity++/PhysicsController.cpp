@@ -1,27 +1,17 @@
 #include "PhysicsController.h"
 
-PhysicsController::PhysicsController():
-position(100.0f, 0),
-appliedForce(0,0),
-velocity(10.0f,0)
+PhysicsController::PhysicsController(sf::Vector2f position, sf::Vector2f velocity, float mass, float density):
+position(position),
+velocity(velocity),
+mass(mass),
+density(density),
+appliedForce(0,0)
 {
 }
 
 
 PhysicsController::~PhysicsController()
 {
-}
-
-bool PhysicsController::init(const PhysicsControllerInitialiser parameters)
-{	
-	mass = parameters.mass;
-	density = parameters.density;
-	position = parameters.position;
-	velocity = parameters.velocity;
-
-	std::cout << mass << std::endl;
-
-	return true;
 }
 
 bool PhysicsController::draw(sf::RenderWindow &window)
