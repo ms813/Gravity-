@@ -8,6 +8,7 @@
 #include "Entity.h"
 #include "EntityFactory.h"
 #include "PhysicsController.h"
+#include "EventHandler.h"
 
 
 
@@ -25,5 +26,7 @@ private:
 	std::vector<std::shared_ptr<Entity>> entities;
 	bool VERLET_STATE;
 	rapidjson::Document levelData;
+	EventHandler _eventHandler;
+	EntityFactory _factory;
 };
 

@@ -1,7 +1,7 @@
 #include "EventEmitter.h"
+#include "EventHandler.h"
 
-EventEmitter::EventEmitter(const EventHandler& eventHandler) :
-_eventHandler(eventHandler)
+EventEmitter::EventEmitter()
 {
 }
 
@@ -10,8 +10,18 @@ EventEmitter::~EventEmitter()
 {
 }
 
-
-bool EventEmitter::handleEvent(const Event& event)
+bool EventEmitter::handleEvent(Event event)
 {
 	return false;
+}
+
+bool EventEmitter::emitEvent(Event event)
+{		
+	return _eventHandler->receiveEvent(event);
+}
+
+
+bool EventEmitter::setEventHandler(EventHandler* handler)
+{
+	return _eventHandler = handler;
 }

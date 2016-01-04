@@ -2,19 +2,12 @@
 
 Scene::Scene():
 VERLET_STATE(true)
-{
-	/*
-	Entity* entity = new Entity();		
-	PhysicsController* physControl = new PhysicsController();	
-
-	entity->addComponent(physControl);
-	entities.push_back(entity);	
-	entity->init();	
-	*/
+{	
 	loadLevelJSON("resources/leveldata/level1.json");
 
-	EntityFactory factory;
-	std::shared_ptr<Entity> asteroid = factory.createEntity("asteroid");
+	_eventHandler.registerEmitter(&_factory);
+
+	std::shared_ptr<Entity> asteroid = _factory.createEntity("asteroid");
 	entities.push_back(asteroid);
 }
 
@@ -37,6 +30,7 @@ bool Scene::draw(sf::RenderWindow &window)
 
 bool Scene::update(const float dt)
 {
+	_eventHandler.update(dt);
 	for (auto &entity : entities){
 		entity->update(dt, VERLET_STATE);
 	}

@@ -1,8 +1,7 @@
 #pragma once
-class Event
+struct Event
 {
-public:
-	Event(int eventType, int data);
-	~Event();
+	Event();
+	virtual ~Event();
 };
 

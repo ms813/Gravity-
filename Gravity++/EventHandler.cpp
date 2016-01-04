@@ -1,5 +1,6 @@
 #include "EventHandler.h"
-
+#include <iostream>
+#include <assert.h>
 
 EventHandler::EventHandler()
 {
@@ -19,6 +20,7 @@ bool EventHandler::registerEmitter(EventEmitter* emitter)
 	if (!found)
 	{
 		_eventEmitters.push_back(emitter);
+		emitter->setEventHandler(this);
 	}
 
 	return !found;
@@ -36,15 +38,33 @@ bool EventHandler::deregisterEmitter(EventEmitter* emitter)
 	return false;
 }
 
+
 bool EventHandler::receiveEvent(Event event)
 {
+	std::cout << "EventHandler received an event" << std::endl;
 	_events.push(event);
 	return true;
 }
 
-bool EventHandler::handleEvents()
-{
-	Event event = _events.front();
-	_events.pop();
-	return false;
+
+void EventHandler::update(const float dt)
+{	
+	
+	while (!_events.empty())
+	{
+		
+		Event e = _events.front();
+		
+		std::cout << &e << std::endl;
+		
+		for (int i = 0; i < _eventEmitters.size(); i++)
+		{
+			std::cout << "Processing event " << i+1 << " in queue" << std::endl;
+			assert(_eventEmitters[i]);
+			_eventEmitters[i]->handleEvent(e);
+		}
+
+		_events.pop();
+	}
 }
+

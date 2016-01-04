@@ -13,10 +13,10 @@ public:
 	virtual ~EventHandler();
 	bool registerEmitter(EventEmitter* emitter);
 	bool deregisterEmitter(EventEmitter* emitter);
-	bool receiveEvent(Event event);
+	bool receiveEvent(Event event);	
+	void update(const float dt);
 
 private:
-	bool handleEvents();
 	std::vector <EventEmitter*> _eventEmitters;
 	std::queue <Event> _events;
 };

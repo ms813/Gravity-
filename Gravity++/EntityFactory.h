@@ -1,7 +1,8 @@
 #pragma once
 #include "Entity.h"
+#include "EventEmitter.h"
 
-class EntityFactory
+class EntityFactory : public EventEmitter
 {
 public:
 	EntityFactory();

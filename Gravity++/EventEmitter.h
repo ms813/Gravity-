@@ -6,10 +6,12 @@ class EventHandler;
 class EventEmitter
 {
 public:
-	EventEmitter(const EventHandler& eventHandler);
+	EventEmitter();
 	virtual ~EventEmitter();
-	bool handleEvent(const Event& event);
-	bool emitEvent(const Event& event);
+	virtual bool handleEvent(Event event);
+	bool emitEvent(Event event);
+	bool setEventHandler(EventHandler* handler);
+
 private:
-	const EventHandler& _eventHandler;
+	EventHandler* _eventHandler;
 };
