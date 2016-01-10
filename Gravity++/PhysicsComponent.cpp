@@ -1,8 +1,8 @@
 #include "PhysicsComponent.h"
+#include "Entity.h"
 
-PhysicsComponent::PhysicsComponent(std::shared_ptr<Entity> owner, sf::Vector2f position, sf::Vector2f velocity, float mass, float density) :
+PhysicsComponent::PhysicsComponent(std::shared_ptr<Entity> owner, sf::Vector2f velocity, float mass, float density) :
 Component(owner),
-position(position),
 velocity(velocity),
 mass(mass),
 density(density),
@@ -27,8 +27,8 @@ bool PhysicsComponent::update(const float dt, const bool VERLET_STATE)
 
 	if (VERLET_STATE)
 	{
-		positionChange = calculatePositionChange(dt);			
-		position += positionChange;
+		positionChange = calculatePositionChange(dt);	
+		owner->move(positionChange);
 	}
 	else
 	{
@@ -75,9 +75,4 @@ void PhysicsComponent::applyForce(sf::Vector2f force)
 sf::Vector2f PhysicsComponent::getPositionChange()
 {		
 	return positionChange;
-}
-
-sf::Vector2f PhysicsComponent::getPosition()
-{
-	return position;
 }

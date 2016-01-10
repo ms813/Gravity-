@@ -1,8 +1,11 @@
 #pragma once
 #include "Entity.h"
-#include "EventEmitter.h"
+#include "EventBroadcaster.h"
+#include "ComponentEvent.h"
 
-class EntityFactory : public EventEmitter
+template class ComponentEvent<PhysicsComponent>;
+
+class EntityFactory : public EventBroadcaster<ComponentEvent<PhysicsComponent>>
 {
 public:
 	EntityFactory();

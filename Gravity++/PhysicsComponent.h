@@ -11,7 +11,6 @@ class PhysicsComponent : public Component
 public:
 	PhysicsComponent(
 		std::shared_ptr<Entity> owner,
-		sf::Vector2f position,
 		sf::Vector2f velocity,
 		float mass,
 		float density
@@ -24,8 +23,7 @@ public:
 	void applyForce(sf::Vector2f force);
 
 	//these methods are used in the Verlet velocity algorithm
-	sf::Vector2f calculatePositionChange(const float dt);
-	sf::Vector2f calculateVelocityChange(const float dt);
+	
 
 	//getters & setters
 	sf::Vector2f getPositionChange();
@@ -33,8 +31,9 @@ public:
 
 private:
 	sf::Vector2f calculateAcceleration();
+	sf::Vector2f calculatePositionChange(const float dt);
+	sf::Vector2f calculateVelocityChange(const float dt);
 
-	sf::Vector2f position;
 	sf::Vector2f positionChange;
 	sf::Vector2f velocity;
 	sf::Vector2f velocityChange;

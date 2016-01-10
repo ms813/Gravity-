@@ -1,5 +1,7 @@
 #include "EntityFactory.h"
-
+#include "ComponentEvent.h"
+#include "ComponentEventAction.h"
+#include "PhysicsComponent.h"
 
 EntityFactory::EntityFactory()
 {
@@ -18,16 +20,18 @@ std::shared_ptr<Entity> EntityFactory::createEntity(std::string entityType)
 	{
 	
 		float density = 5;
-		float mass = 10000;
-		sf::Vector2f pos(200, 200);
+		float mass = 10000;		
+		
 		sf::Vector2f vel(50, 0);
 
-		auto physControl = std::make_shared<PhysicsComponent>(entity, pos, vel, mass, density);
-		Event evt;
-		emitEvent(evt);
-
-		entity->addComponent(physControl);		
+		std::shared_ptr<PhysicsComponent> physicsComponent = std::make_shared<PhysicsComponent>(entity, vel, mass, density);					
+		ComponentEvent<PhysicsComponent> evt(physicsComponent, ComponentEventAction::CREATED);
+		broadcastEvent(evt);
+		entity->addComponent(physicsComponent);
 	}
+
+	sf::Vector2<float> pos(200, 200);
+	entity->setPosition(pos);
 
 	entity->init();
 	return entity;

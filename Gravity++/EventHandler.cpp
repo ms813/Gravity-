@@ -38,7 +38,6 @@ bool EventHandler::deregisterEmitter(EventEmitter* emitter)
 	return false;
 }
 
-
 bool EventHandler::receiveEvent(Event event)
 {
 	std::cout << "EventHandler received an event" << std::endl;
@@ -46,22 +45,19 @@ bool EventHandler::receiveEvent(Event event)
 	return true;
 }
 
-
 void EventHandler::update(const float dt)
 {	
 	
 	while (!_events.empty())
 	{
 		
-		Event e = _events.front();
-		
-		std::cout << &e << std::endl;
+		Event e = _events.front();	
 		
 		for (int i = 0; i < _eventEmitters.size(); i++)
 		{
 			std::cout << "Processing event " << i+1 << " in queue" << std::endl;
 			assert(_eventEmitters[i]);
-			_eventEmitters[i]->handleEvent(e);
+			_eventEmitters[i]->handleEvent(std::make_shared<Event>(e));
 		}
 
 		_events.pop();

@@ -7,7 +7,7 @@
 
 #include "Entity.h"
 #include "EntityFactory.h"
-#include "EventHandler.h"
+#include "PhysicsSystem.h"
 
 
 class Scene
@@ -24,7 +24,7 @@ private:
 	std::vector<std::shared_ptr<Entity>> entities;
 	bool VERLET_STATE;
 	rapidjson::Document levelData;
-	EventHandler _eventHandler;
-	EntityFactory _factory;
+	EntityFactory _entityFactory;
+	PhysicsSystem _physicsSystem;
 };
 

@@ -17,10 +17,11 @@ public:
 	bool update(const float dt, const bool VERLET_STATE);
 	bool init();
 	bool addComponent(std::shared_ptr<Component> component);	
+	void move(sf::Vector2f offset);
+	sf::Vector2f getPosition();
+	void setPosition(sf::Vector2f vector);
 
 private:
 	sf::CircleShape shape;
 	std::vector<std::shared_ptr<Component>> components;
-
-	PhysicsComponent* physicsController;
 };

@@ -12,8 +12,7 @@ Entity::~Entity()
 }
 
 bool Entity::init()
-{
-	shape.setPosition(physicsController->getPosition());
+{	
 	return true;
 }
 
@@ -31,10 +30,7 @@ bool Entity::draw(sf::RenderWindow &window)
 }
 
 bool Entity::update(const float dt, const bool VERLET_STATE)
-{		
-	sf::Vector2f offset = physicsController->getPositionChange();	
-	shape.move(offset);
-
+{	
 	for (auto &component : components)
 	{
 		component->update(dt, VERLET_STATE);
@@ -50,14 +46,7 @@ bool Entity::addComponent(std::shared_ptr<Component> component)
 	
 	if (!found)
 	{
-		components.push_back(component);				
-
-		//cache the physics controller
-		if (dynamic_cast<PhysicsComponent*>(component.get()) != NULL)
-		{
-			physicsController = dynamic_cast<PhysicsComponent*>(component.get());
-			std::cout << "Cached the physics controller" << std::endl;
-		}
+		components.push_back(component);	
 	}
 	else
 	{
@@ -65,4 +54,19 @@ bool Entity::addComponent(std::shared_ptr<Component> component)
 	}
 	
 	return true;
+}
+
+void Entity::move(sf::Vector2f offset)
+{
+	shape.move(offset);
+}
+
+sf::Vector2f Entity::getPosition()
+{
+	return shape.getPosition();
+}
+
+void Entity::setPosition(sf::Vector2f position)
+{
+	shape.setPosition(position);
 }
