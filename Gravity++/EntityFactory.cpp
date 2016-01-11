@@ -13,9 +13,8 @@ EntityFactory::~EntityFactory()
 }
 
 
-std::shared_ptr<Entity> EntityFactory::createEntity(std::string entityType)
-{
-	auto entity = std::make_shared<Entity>();	
+void EntityFactory::buildEntity(std::string entityType, std::shared_ptr<Entity> entity)
+{	
 	if (entityType == "asteroid")
 	{
 	
@@ -23,7 +22,7 @@ std::shared_ptr<Entity> EntityFactory::createEntity(std::string entityType)
 		float mass = 10000;		
 		sf::Vector2<float> pos(200, 200);
 		sf::Vector2f vel(50, 0);
-
+		
 		std::shared_ptr<PhysicsComponent> physicsComponent = std::make_shared<PhysicsComponent>(entity, pos, vel, mass, density);					
 		ComponentEvent<PhysicsComponent> evt(physicsComponent, ComponentEventAction::CREATED);
 		broadcastEvent(evt);
@@ -31,5 +30,4 @@ std::shared_ptr<Entity> EntityFactory::createEntity(std::string entityType)
 	}	
 
 	entity->init();
-	return entity;
 }

@@ -10,6 +10,6 @@ class EntityFactory : public EventBroadcaster<ComponentEvent<PhysicsComponent>>
 public:
 	EntityFactory();
 	~EntityFactory();
-	std::shared_ptr<Entity> createEntity(std::string entityType);
+	void buildEntity(std::string entityType, std::shared_ptr<Entity> entity);
 };
 

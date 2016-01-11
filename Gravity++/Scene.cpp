@@ -8,10 +8,10 @@ VERLET_STATE(true)
 	auto ptr = std::make_shared<PhysicsSystem>(_physicsSystem);
 	_entityFactory.registerListener(ptr);
 
-	std::shared_ptr<Entity> asteroid = _entityFactory.createEntity("asteroid");
-	entities.push_back(asteroid);
-
+	std::shared_ptr<Entity> asteroid(new Entity()); 
+	_entityFactory.buildEntity("asteroid", asteroid);
 	
+	entities.push_back(asteroid);	
 }
 
 
