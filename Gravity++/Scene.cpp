@@ -33,7 +33,7 @@ bool Scene::draw(sf::RenderWindow &window)
 
 bool Scene::update(const float dt)
 {
-	
+	_physicsSystem.update(dt, VERLET_STATE);
 	for (auto &entity : entities){
 		entity->update(dt, VERLET_STATE);
 	}

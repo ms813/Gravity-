@@ -70,3 +70,8 @@ void Entity::setPosition(sf::Vector2f position)
 {
 	shape.setPosition(position);
 }
+
+void Entity::setSize(sf::Vector2f size)
+{
+	shape.setScale(size.x / shape.getGlobalBounds().width, size.y / shape.getGlobalBounds().height);
+}

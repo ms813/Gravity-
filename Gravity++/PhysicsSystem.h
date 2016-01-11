@@ -5,6 +5,8 @@
 #include "EventListener.h"
 #include "PhysicsComponent.h"
 #include "ComponentEvent.h"
+#include "HashGrid.h"
+#include "GravityGridCell.h"
 
 class PhysicsSystem : public EventListener<ComponentEvent<PhysicsComponent>>
 {
@@ -18,5 +20,6 @@ private:
 	bool _registerComponent(std::shared_ptr<PhysicsComponent> component);
 	bool _deregisterComponent(std::shared_ptr<PhysicsComponent> component);
 	std::vector<std::shared_ptr<PhysicsComponent>> _physicsComponents;
+	HashGrid<GravityGridCell> _gravityGrid;
 };
 

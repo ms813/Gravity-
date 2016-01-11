@@ -1,7 +1,8 @@
 #include "PhysicsSystem.h"
 
 
-PhysicsSystem::PhysicsSystem()
+PhysicsSystem::PhysicsSystem() :
+_gravityGrid(50)
 {
 }
 
@@ -13,7 +14,14 @@ PhysicsSystem::~PhysicsSystem()
 
 bool PhysicsSystem::update(const float dt, const bool VERLET_STATE)
 {
-	return false;
+	_gravityGrid.clear();
+	for (auto &comp : _physicsComponents)
+	{
+		_gravityGrid.insert(comp);
+	}
+	
+	std::cout << "Something fishy! PhysicsSystem._physicsComponents.size() = " <<_physicsComponents.size() << std::endl;
+	return true;
 }
 
 

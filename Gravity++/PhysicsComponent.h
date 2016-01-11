@@ -11,6 +11,7 @@ class PhysicsComponent : public Component
 public:
 	PhysicsComponent(
 		std::shared_ptr<Entity> owner,
+		sf::Vector2f position,
 		sf::Vector2f velocity,
 		float mass,
 		float density
@@ -28,19 +29,22 @@ public:
 	//getters & setters
 	sf::Vector2f getPositionChange();
 	sf::Vector2f getPosition();
+	sf::Vector2f getSize();
 
 private:
-	sf::Vector2f calculateAcceleration();
-	sf::Vector2f calculatePositionChange(const float dt);
-	sf::Vector2f calculateVelocityChange(const float dt);
+	sf::Vector2f _calculateAcceleration();
+	sf::Vector2f _calculatePositionChange(const float dt);
+	sf::Vector2f _calculateVelocityChange(const float dt);
 
-	sf::Vector2f positionChange;
-	sf::Vector2f velocity;
-	sf::Vector2f velocityChange;
-	sf::Vector2f appliedForce;
-	sf::Vector2f acceleration;
+	sf::Vector2f _position;
+	sf::Vector2f _size;
+	sf::Vector2f _positionChange;
+	sf::Vector2f _velocity;
+	sf::Vector2f _velocityChange;
+	sf::Vector2f _appliedForce;
+	sf::Vector2f _acceleration;
 
-	float mass;
-	float density;		
+	float _mass;
+	float _density;		
 };
 

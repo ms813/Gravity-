@@ -20,6 +20,7 @@ public:
 	void move(sf::Vector2f offset);
 	sf::Vector2f getPosition();
 	void setPosition(sf::Vector2f vector);
+	void setSize(sf::Vector2f size);
 
 private:
 	sf::CircleShape shape;

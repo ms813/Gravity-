@@ -21,17 +21,14 @@ std::shared_ptr<Entity> EntityFactory::createEntity(std::string entityType)
 	
 		float density = 5;
 		float mass = 10000;		
-		
+		sf::Vector2<float> pos(200, 200);
 		sf::Vector2f vel(50, 0);
 
-		std::shared_ptr<PhysicsComponent> physicsComponent = std::make_shared<PhysicsComponent>(entity, vel, mass, density);					
+		std::shared_ptr<PhysicsComponent> physicsComponent = std::make_shared<PhysicsComponent>(entity, pos, vel, mass, density);					
 		ComponentEvent<PhysicsComponent> evt(physicsComponent, ComponentEventAction::CREATED);
 		broadcastEvent(evt);
 		entity->addComponent(physicsComponent);
-	}
-
-	sf::Vector2<float> pos(200, 200);
-	entity->setPosition(pos);
+	}	
 
 	entity->init();
 	return entity;
