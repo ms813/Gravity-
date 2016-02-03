@@ -1,68 +1,67 @@
-#include "Entity.h"
+#include "Game.h"
+#include "EntityManager.h"
 
-Entity::Entity()
-{
-	shape.setRadius(10.0f);
-	shape.setFillColor(sf::Color::Green);
+using namespace wn2d;
+
+Entity::Entity(string name, EntityManager* owner) : name(name), owner(owner) {
+	game = owner->getGame();
 }
 
-
-Entity::~Entity()
-{	
+const string Entity::getName() {
+	return name;
 }
 
-bool Entity::init()
-{
-	shape.setPosition(physicsController->getPosition());
-	return true;
-}
-
-
-bool Entity::draw(sf::RenderWindow &window)
-{
-	window.draw(shape);
-
-	for (auto &component : components)
-	{
-		component->draw(window);
+void Entity::onStart() {
+	for (auto& component : components) {
+		component->init();
 	}
-
-	return true;
 }
 
-bool Entity::update(const float dt, const bool VERLET_STATE)
-{		
-	sf::Vector2f offset = physicsController->getPositionChange();	
-	shape.move(offset);
-
-	for (auto &component : components)
-	{
-		component->update(dt, VERLET_STATE);
+bool Entity::update(float frameTime) {
+	iterating = true;
+	for (auto& component : components) {
+		component->update(frameTime);
 	}
-
-	return true;
+	iterating = false;
+	addQueuedComponents();
+	return false;
 }
 
-
-bool Entity::addComponent(std::shared_ptr<Component> component)
-{	
-	bool found = std::find(components.begin(), components.end(), component) != components.end();
-	
-	if (!found)
-	{
-		components.push_back(component);				
-
-		//cache the physics controller
-		if (dynamic_cast<PhysicsController*>(component.get()) != NULL)
-		{
-			physicsController = dynamic_cast<PhysicsController*>(component.get());
-			std::cout << "Cached the physics controller" << std::endl;
-		}
+void Entity::draw(sf::RenderTarget& target) {
+	for (auto& component : components) {
+		component->draw(target);
 	}
-	else
-	{
-		std::cout << "[Entity.addComponent()] Error, trying to add component that is already on this entity" << std::endl;
+}
+
+int Entity::getZ() {
+	return z;
+}
+
+void Entity::setZ(int newZ) {
+	z = newZ;
+	//TODO
+}
+
+Game* Entity::getGame(){
+	return game;
+}
+
+bool Entity::isAlive() {
+	return alive;
+}
+
+void Entity::destroy(){
+	alive = false;
+}
+
+//TODO: NOT TESTED
+void Entity::addQueuedComponents(){
+	for (auto component : queuedComponents){
+		unique_ptr<Component> uniqueComponentPtr{ component };
+		components.emplace_back(move(uniqueComponentPtr));
+		componentArray[component->id] = component;
+		componentBitset[component->id] = true;
+		component->onStart();
 	}
-	
-	return true;
+	queuedComponents.clear();
 }

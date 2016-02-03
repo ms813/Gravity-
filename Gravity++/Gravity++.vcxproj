@@ -14,6 +14,7 @@
     <ProjectGuid>{159CBEE8-EBB0-47FA-A538-BACE18CE7480}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Gravity</RootNamespace>
+    <ProjectName>Gravity++</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -82,24 +83,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Component.cpp">
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)\lib\rapidxml-1.13;$(SolutionDir)\lib\SFML-2.3.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ClCompile>
     <ClCompile Include="Entity.cpp" />
-    <ClCompile Include="EntityFactory.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="PhysicsController.cpp" />
-    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="VectorMath.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Component.h" />
     <ClInclude Include="Entity.h" />
-    <ClInclude Include="EntityFactory.h" />
+    <ClInclude Include="EntityManager.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="PhysicsController.h" />
-    <ClInclude Include="Scene.h" />
+    <ClInclude Include="Games\Example.h" />
+    <ClInclude Include="Games\ExampleComponent.h" />
+    <ClInclude Include="Utilities.h" />
     <ClInclude Include="VectorMath.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

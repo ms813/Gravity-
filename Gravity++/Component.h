@@ -1,19 +1,79 @@
 #pragma once
-#include <SFML/Graphics.hpp>
+
+#include <string>
+#include <bitset>
 #include <memory>
+#include <algorithm>
+#include "SFML/System/Time.hpp"
+#include "SFML/Graphics/RenderTarget.hpp"
+#include "Utilities.h"
 
-class Entity;
+using std::string;
+using std::size_t;
+using std::bitset;
+using std::is_base_of;
 
-class Component
-{
-public:
-	Component();
-	virtual ~Component();
-	virtual bool draw(sf::RenderWindow &window) = 0;
-	virtual bool update(const float dt, const bool VERLET_STATE) = 0;	
+namespace wn2d {
 
-protected:
-	Component(std::shared_ptr<Entity> owner);
-	std::shared_ptr<Entity> owner;
-};
+	inline size_t getComponentID() NOEXCEPT{
+		static size_t lastID{ 0u };
+		return lastID++;
+	}
 
+	template<class T>
+	inline size_t getComponentTypeID() NOEXCEPT{
+		//static_assert(is_base_of<component, T>::value, "T must inherit from Component!");
+		static size_t typeID{ getComponentID() };
+		return typeID;
+	}
+
+	class Entity;
+	class Game;
+
+	class Component{
+		friend class Entity;
+
+	private:
+		size_t id;
+
+	protected:
+		Entity* owner{ nullptr };
+		Game* game{ nullptr };
+
+		Component() {
+
+		}
+
+		virtual void init(){
+
+		}
+
+		virtual void onStart(){
+
+		}
+
+		virtual void update(float frameTime) {
+
+		}
+
+		virtual void draw(sf::RenderTarget& target) {
+			
+		}
+
+		void setOwner(Entity* owner) {
+			this->owner = owner;
+		}
+
+		void setGame(Game* game) {
+			this->game = game;
+		}
+	public:
+		virtual ~Component() {
+
+		}
+
+		Entity* getOwner() {
+			return owner;
+		}
+	};
+}
