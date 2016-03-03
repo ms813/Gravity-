@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <algorithm>
-#include "Entity.h"
+#include "Entity.hpp"
 #include "SFML/System/Clock.hpp"
 
 using std::cout;
@@ -27,11 +27,14 @@ namespace wn2d {
 			queuedEntities.clear();
 		}
 
-		bool zOrderChanged;
+		bool zOrderDirty;
 		Game* game;
 
 	public:
-		EntityManager(Game* game) : zOrderChanged(false), iterating(false), game(game){
+		EntityManager(Game* game) : 
+			zOrderDirty(false),
+			iterating(false),
+			game(game) {
 
 		}
 
@@ -45,7 +48,7 @@ namespace wn2d {
 				queuedEntities.emplace_back(entity);
 			}
 
-			zOrderChanged = true;
+			zOrderDirty = true;
 			return *entity;
 		}
 
@@ -68,9 +71,9 @@ namespace wn2d {
 		}
 
 		void draw(sf::RenderTarget& target) {
-			if (zOrderChanged) {
-				// do a sort
-				zOrderChanged = false;
+			if (zOrderDirty) {
+				// do a sort, probably a static function in its own class
+				zOrderDirty = false;
 			}
 			iterating = true;
 			for (auto& entity : entities) {
@@ -102,8 +105,8 @@ namespace wn2d {
 			);
 		}
 
-		void zOrderModified() {
-			zOrderChanged = true;
+		void zOrderUpdated() {
+			zOrderDirty = true;
 		}
 
 		Game* getGame() {

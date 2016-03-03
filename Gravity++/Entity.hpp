@@ -6,7 +6,7 @@
 #include <bitset>
 #include <assert.h>
 #include "SFML/System/Time.hpp"
-#include "Component.h"
+#include "Component.hpp"
 
 using std::string;
 using std::vector;
@@ -39,7 +39,7 @@ namespace wn2d {
 		int z = 0;
 
 		vector <unique_ptr<Component>> components;
-		array<Component*, MAX_COMPONENTS> componentArray;
+		array<Component*, MAX_COMPONENTS> componentArray; // stops entities becoming insanely complex (not actually nessecary)
 
 		bool iterating{ false };
 		vector<Component*> queuedComponents;
@@ -56,10 +56,10 @@ namespace wn2d {
 
 		template<class T, typename... args>
 		T& addComponent(args&&... componentArgs) {
-			assert(!hasComponent<T>());
+			assert(!hasComponent<T>()); // throw if this entity already has this component 
 
-			T* component = new T(forward<args>(componentArgs)...);
-			size_t componentID = getComponentTypeID<T>();
+			T* component = new T(forward<args>(componentArgs)...); // create component with relevant args
+			size_t componentID = getComponentTypeID<T>(); // creates unique id for component types
 			component->id = componentID;
 			component->setOwner(this);
 			component->setGame(game);

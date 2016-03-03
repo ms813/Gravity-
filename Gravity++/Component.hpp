@@ -6,7 +6,7 @@
 #include <algorithm>
 #include "SFML/System/Time.hpp"
 #include "SFML/Graphics/RenderTarget.hpp"
-#include "Utilities.h"
+#include "Utilities.hpp"
 
 using std::string;
 using std::size_t;

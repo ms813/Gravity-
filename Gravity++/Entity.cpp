@@ -1,5 +1,5 @@
-#include "Game.h"
-#include "EntityManager.h"
+#include "Game.hpp"
+#include "EntityManager.hpp"
 
 using namespace wn2d;
 

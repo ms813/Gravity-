@@ -1,7 +1,7 @@
 #pragma once
 #include "SFML/Graphics/CircleShape.hpp"
-#include "../Component.h"
-#include "../Game.h"
+#include "../Component.hpp"
+#include "../Game.hpp"
 
 using namespace wn2d;
 

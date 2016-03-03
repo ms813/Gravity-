@@ -89,14 +89,16 @@
     <ClCompile Include="VectorMath.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Component.h" />
-    <ClInclude Include="Entity.h" />
-    <ClInclude Include="EntityManager.h" />
-    <ClInclude Include="Game.h" />
+    <ClInclude Include="Component.hpp" />
+    <ClInclude Include="Entity.hpp" />
+    <ClInclude Include="EntityManager.hpp" />
+    <ClInclude Include="SignalManager.hpp" />
+    <ClInclude Include="Game.hpp" />
     <ClInclude Include="Games\Example.h" />
     <ClInclude Include="Games\ExampleComponent.h" />
-    <ClInclude Include="Utilities.h" />
-    <ClInclude Include="VectorMath.h" />
+    <ClInclude Include="Signal.hpp" />
+    <ClInclude Include="Utilities.hpp" />
+    <ClInclude Include="VectorMath.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

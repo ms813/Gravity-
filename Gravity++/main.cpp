@@ -1,4 +1,4 @@
-#include "Game.h"
+#include "Game.hpp"
 #include "Games/Example.h"
 
 #include <Windows.h>

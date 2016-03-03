@@ -1,8 +1,8 @@
 #pragma once
 
 #include<SFML/Graphics.hpp>
-#include "EntityManager.h"
-//#include "EventManager.h"
+#include "EntityManager.hpp"
+//#include "EventManager.hpp"
 //#include "nxe\Lighting.h"
 
 namespace wn2d{
@@ -17,7 +17,7 @@ namespace wn2d{
 		CLOSED		/*!< The window has been closed and the components in the scene have been destroyed.*/
 	};
 
-	class Game : public sf::RenderWindow, public EntityManager/*, public EventManager, public nxe::Lighting, public InputManager*/
+	class Game : public sf::RenderWindow, public EntityManager/*, public SignalManager, public nxe::Lighting, public InputManager*/
 	{
 	public:
 		sf::Sprite globalLightSprite;
