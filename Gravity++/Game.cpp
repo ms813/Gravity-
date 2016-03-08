@@ -55,7 +55,7 @@ GameState Game::run()
 	state = LOADING;
 
 	//Call init for each component
-	//EntityManager::init();
+	EntityManager::init();
 
 	state = RUNNING;
 	sf::Clock clock;
@@ -71,7 +71,7 @@ GameState Game::run()
 		/*if (InputManager::handleInput() == CLOSE) {
 			state = CLOSING;
 			return state;
-			}*/
+		}*/
 
 		//handle events
 		//EventManager::handleEvents();

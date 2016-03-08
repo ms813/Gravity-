@@ -2,12 +2,14 @@
 #include "SFML/Graphics/CircleShape.hpp"
 #include "../Component.hpp"
 #include "../Game.hpp"
+#include "../Signal.hpp"
 
 using namespace wn2d;
 
 class ExampleComponent : public Component{
 private:
 	sf::CircleShape image;
+	Signal<std::string, float> signal;
 
 public:
 	//pass in the Score component and both Paddle components to do game logic later on
@@ -25,10 +27,14 @@ public:
 
 	void init() override{
 		owner->setZ(0);
+
+		signal.connect([](std::string arg1, float arg2) {
+			std::cout << arg1 << " " << arg2 << std::endl;
+		});
 	}
 
 	void update(float frameTime) override{
-		init();
+		signal.emit("The frame time is: ", frameTime);
 	}
 
 	void draw(sf::RenderTarget& target) override{

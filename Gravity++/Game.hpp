@@ -2,7 +2,7 @@
 
 #include<SFML/Graphics.hpp>
 #include "EntityManager.hpp"
-//#include "EventManager.hpp"
+//#include "SignalManager.hpp"
 //#include "nxe\Lighting.h"
 
 namespace wn2d{

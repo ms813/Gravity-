@@ -52,7 +52,7 @@ namespace wn2d {
 			return *entity;
 		}
 
-		void onStart() {
+		void init() {
 			iterating = true;
 			for (auto& entity : entities) {
 				entity->onStart();
